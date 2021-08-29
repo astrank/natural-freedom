@@ -1,10 +1,12 @@
 import { useState } from "react";
 import { sanityClient, PortableText } from "../lib/sanity";
+import Link from "next/link";
 
 const postsQuery = `*[_type == "post"]{
   _id,
   title,
-  content
+  author,
+  content,
 }`;
 
 export default function Home({ posts }) {
@@ -25,8 +27,23 @@ export default function Home({ posts }) {
           ))}
       </div>
       <div className="w-full px-10">
-        <h1 className="text-5xl bold mb-8 font-bold">{posts[current]?.title}</h1>
-        <PortableText blocks={posts[current]?.content} className="flex flex-col gap-5 text-lg leading-7" />
+        <div className="mb-6 flex flex-col gap-2">
+          <h1 className="text-5xl bold font-bold">{posts[current]?.title}</h1>
+          <span className="text-lg text-gray-500 font-semibold">
+            Autor:
+            <a
+              href="https://www.youtube.com/c/ChironLast"
+              className="ml-2 hover:underline"
+              target="_blank"
+            >
+              {posts[current]?.author}
+            </a>
+          </span>
+        </div>
+        <PortableText
+          blocks={posts[current]?.content}
+          className="flex flex-col gap-5 text-lg leading-7"
+        />
       </div>
     </div>
   );

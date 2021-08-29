@@ -1,25 +1,30 @@
 export default {
-    name: "post",
-    title: "Post",
-    type: "document",
-    fields: [
+  name: "post",
+  title: "Post",
+  type: "document",
+  fields: [
+    {
+      name: "title",
+      title: "Title",
+      type: "string",
+    },
+    {
+      name: "author",
+      title: "Author",
+      type: "string",
+    },
+    {
+      name: "content",
+      title: "Content",
+      type: "array",
+      of: [
         {
-            name: "title",
-            title: "Title",
-            type: "string",
+          title: "Block",
+          type: "block",
+          styles: [{ title: "Normal", value: "normal" }],
+          lists: [],
         },
-        {
-            name: "content",
-            title: "Content",
-            type: "array",
-            of: [
-                {
-                    title: "Block",
-                    type: "block",
-                    styles: [{ title: "Normal", value: "normal" }],
-                    lists: [],
-                }
-            ]
-        }
-    ]
-}
+      ],
+    },
+  ],
+};

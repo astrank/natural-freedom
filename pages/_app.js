@@ -1,3 +1,4 @@
+import { ProvideTheme } from "../context/ThemeContext";
 import Head from "next/head";
 import 'tailwindcss/tailwind.css';
 
@@ -8,7 +9,9 @@ function MyApp({ Component, pageProps }) {
         <title>Natural Freedom</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <Component {...pageProps} />
+      <ProvideTheme>
+        <Component {...pageProps} />
+      </ProvideTheme>
     </>
   );
 }

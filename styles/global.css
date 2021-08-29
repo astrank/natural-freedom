@@ -1,7 +1,7 @@
 .switch[data-state="checked"] {
-    background-color: rgb(229, 231, 235);
+    background-color: rgb(96, 165, 250);
 }
 
 .thumb[data-state="checked"] {
-    transform: translate(2.5rem);
+    transform: translate(2rem);
 }

@@ -6,6 +6,7 @@
     "start": "next start"
   },
   "dependencies": {
+    "@radix-ui/react-switch": "0.0.15",
     "@sanity/cli": "^2.17.1",
     "next": "latest",
     "next-sanity": "^0.4.0",

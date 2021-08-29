@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { sanityClient, PortableText } from "../lib/sanity";
 import { useTheme } from "../context/ThemeContext";
+import * as Switch from "@radix-ui/react-switch";
 import Image from "next/image";
 
 import sun from "../assets/sun.svg";
@@ -17,52 +18,49 @@ export default function Home({ posts }) {
   const [current, setCurrent] = useState(0);
   const { setDarkTheme, setLightTheme, theme } = useTheme();
 
+  const handleSwitch = () => {
+    theme == "dark" ? setLightTheme() : setDarkTheme();
+  }
+
   return (
     <div className="flex flex-row py-8 text-gray-700 bg-white transition duration-700 dark:bg-dark dark:text-gray-300 divide-x divide-gray-300">
       <div className="w-96 flex-col gap-3 px-6 hidden lg:flex">
         <div>
-          {theme == "dark" && (
-            <button
-              onClick={() => setLightTheme()}
-              className="bg-gray-700 dark:bg-gray-200 rounded-full p-2"
+          <Switch.Root
+            name="switch"
+            onCheckedChange={() => handleSwitch(name)}
+            className="switch bg-gray-700 shadow-md relative flex flex-row rounded-full gap-3 w-20 h-10 items-center justify-center"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              className="h-6 w-6 text-gray-700"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
             >
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                className="h-6 w-6 text-white dark:text-gray-700"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"
-                />
-              </svg>
-            </button>
-          )}
-          {theme == "light" && (
-            <button
-              onClick={() => setDarkTheme()}
-              className="bg-gray-700 dark:bg-gray-200 rounded-full p-2"
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={2}
+                d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"
+              />
+            </svg>
+            <Switch.Thumb className="thumb h-8 w-8 rounded-full bg-blue-400 z-20 absolute left-1" />
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              className="h-6 w-6 text-white dark:text-gray-700"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
             >
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                className="h-6 w-6 text-white dark:text-gray-700"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"
-                />
-              </svg>
-            </button>
-          )}
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={2}
+                d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"
+              />
+            </svg>
+          </Switch.Root>
         </div>
         {posts &&
           posts.map((post, index) => (

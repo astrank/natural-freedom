@@ -5,3 +5,7 @@
 .thumb[data-state="checked"] {
     transform: translate(2rem);
 }
+
+.dialog {
+    animation: translation 0.3s;
+}

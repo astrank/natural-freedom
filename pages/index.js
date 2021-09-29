@@ -15,8 +15,8 @@ export default function Home({ posts }) {
   const [current, setCurrent] = useState(0);
 
   return (
-    <div className="flex flex-col lg:flex-row lg:py-8 text-gray-700 bg-white dark:bg-dark dark:text-gray-300 transition duration-700 divide-x-none lg:divide-x lg:divide-gray-300">
-      <nav className="w-full lg:w-96 flex flex-row lg:flex-col gap-3 py-8 lg:py-0 px-3 sm:px-6 md:px-14 lg:px-6 justify-between lg:justify-start">
+    <div className="flex flex-col lg:flex-row text-gray-700 bg-white dark:bg-dark dark:text-gray-200 transition duration-700 divide-x-none lg:h-screen lg:overflow-hidden">
+      <nav className="w-full lg:w-96 flex flex-row my-4 py-4 lg:border-r lg:border-gray-300 lg:flex-col gap-3 px-3 sm:px-6 md:px-14 lg:px-6 justify-between lg:justify-start">
         <Switcher />
         <div className="lg:hidden">
           <Dialog.Root>
@@ -63,14 +63,16 @@ export default function Home({ posts }) {
               <div
                 key={post._id}
                 className="cursor-pointer text-md font-classic font-semibold hover:text-blue-400 hover:underline"
-                onClick={() => setCurrent(index)}
+                onClick={() => {
+                  setCurrent(index);
+                }}
               >
                 {post.title}
               </div>
             ))}
         </div>
       </nav>
-      <div className="w-full px-3 sm:px-6 md:px-14">
+      <div className="w-full px-3 sm:px-6 md:px-14 lg:py-8 lg:overflow-y-auto">
         <div className="mb-6 flex flex-col gap-2">
           <h1 className="text-5xl font-bold">{posts[current]?.title}</h1>
           <span className="text-lg font-semibold">
@@ -98,7 +100,7 @@ export async function getStaticProps() {
 
   return {
     props: {
-      posts
+      posts,
     },
     revalidate: 60,
   };

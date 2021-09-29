@@ -16,7 +16,7 @@ export default function Home({ posts }) {
 
   return (
     <div className="flex flex-col lg:flex-row text-gray-700 bg-white dark:bg-dark dark:text-gray-200 transition duration-700 divide-x-none lg:h-screen lg:overflow-hidden">
-      <nav className="w-full lg:w-96 flex flex-row my-4 py-4 lg:border-r lg:border-gray-300 lg:flex-col gap-3 px-3 sm:px-6 md:px-14 lg:px-6 justify-between lg:justify-start">
+      <nav className="w-full lg:w-96 flex flex-row my-8 lg:border-r lg:border-gray-300 dark:lg:border-gray-500 lg:flex-col gap-4 px-3 sm:px-6 md:px-14 lg:px-6 justify-between lg:justify-start">
         <Switcher />
         <div className="lg:hidden">
           <Dialog.Root>
@@ -57,7 +57,7 @@ export default function Home({ posts }) {
             </Dialog.Content>
           </Dialog.Root>
         </div>
-        <div className="hidden lg:flex lg:flex-col lg:gap-3">
+        <div className="hidden lg:flex lg:flex-col lg:gap-4">
           {posts &&
             posts.map((post, index) => (
               <div
@@ -73,7 +73,7 @@ export default function Home({ posts }) {
         </div>
       </nav>
       <div className="w-full px-3 sm:px-6 md:px-14 lg:py-8 lg:overflow-y-auto">
-        <div className="mb-6 flex flex-col gap-2">
+        <div className="mb-6 flex flex-col gap-3">
           <h1 className="text-5xl font-bold">{posts[current]?.title}</h1>
           <span className="text-lg font-semibold">
             Autor:

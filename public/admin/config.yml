@@ -1,25 +1,28 @@
 backend:
-  name: git-gateway
-  repo: astrank/natural-freedom
-  branch: main # Branch to update (optional; defaults to master)
-  base_url: https://naturalfreedom.vercel.app
+    name: git-gateway
+    repo: astrank/natural-freedom
+    branch: main # Branch to update (optional; defaults to master)
+    base_url: https://naturalfreedom.vercel.app
 media_folder: public/img
 public_folder: img
 collections:
-  - label: "Post"
-    name: "post"
-    folder: "public/data/posts"
-    create: true
-    identifier_field: "title"
-    slug: "{{fields.slug}}"
-    format: "json"
-    fields:
-      - { label: "Title", name: "title", widget: "string" }
-      - { label: "Text", name: "text", widget: "text" }
-      - {
-          label: "Slug",
-          name: "slug",
-          widget: "string",
-          pattern:
-            ["^[a-zA-Z0-9-_]+$", "Alphanumeric with dashes or underscores"],
-        }
+    - label: "Post"
+      name: "post"
+      folder: "public/data/posts"
+      create: true
+      identifier_field: "title"
+      slug: "{{fields.slug}}"
+      format: "json"
+      fields:
+          - { label: "Title", name: "title", widget: "string" }
+          - { label: "Text", name: "text", widget: "markdown" }
+          - {
+                label: "Slug",
+                name: "slug",
+                widget: "string",
+                pattern:
+                    [
+                        "^[a-zA-Z0-9-_]+$",
+                        "Alphanumeric with dashes or underscores",
+                    ],
+            }

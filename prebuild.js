@@ -1,21 +1,18 @@
 const fs = require("fs");
 
-console.log("Writing on events.json");
+console.log("Writing on posts.json");
 
-const fileNames = fs.readdirSync("public/data/events");
-let events = [];
+const fileNames = fs.readdirSync("public/data/posts");
+let posts = [];
 
 fileNames.map(async (fileName) => {
-    if (!fileName.endsWith(".json")) {
-        return false;
-    }
+  if (!fileName.endsWith(".json")) {
+    return false;
+  }
 
-    const fileContents = fs.readFileSync(
-        `public/data/events/${fileName}`,
-        "utf8"
-    );
+  const fileContents = fs.readFileSync(`public/data/posts/${fileName}`, "utf8");
 
-    events.push(JSON.parse(fileContents));
+  posts.push(JSON.parse(fileContents));
 });
 
-fs.writeFileSync("public/data/events.json", JSON.stringify(events, null, 2));
+fs.writeFileSync("public/data/posts.json", JSON.stringify(posts, null, 2));

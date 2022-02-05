@@ -3,7 +3,7 @@ import { sanityClient, PortableText } from "../lib/sanity";
 import * as Dialog from "@radix-ui/react-dialog";
 import Switcher from "../components/Switcher";
 import MenuIcon from "../assets/MenuIcon";
-import Posts from "../public/data/posts.json";
+import Markdown from "react-markdown";
 
 const postsQuery = `*[_type == "post"]{
   _id,
@@ -87,7 +87,10 @@ export default function Home({ posts }) {
             </a>
           </span>
         </div>
-        <p>{posts[current]?.body}</p>
+        <Markdown
+          source={posts[current]?.body}
+          className="flex flex-col gap-5 text-lg leading-7 font-classic"
+        />
         {/* <PortableText
                     blocks={posts[current]?.text}
                     className="flex flex-col gap-5 text-lg leading-7 font-classic"

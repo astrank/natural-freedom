@@ -1,9 +1,9 @@
 import { useState } from "react";
-import { sanityClient, PortableText } from "../lib/sanity";
 import * as Dialog from "@radix-ui/react-dialog";
 import Switcher from "../components/Switcher";
 import MenuIcon from "../assets/MenuIcon";
 import Markdown from "react-markdown";
+import { useEffect } from "react";
 
 const postsQuery = `*[_type == "post"]{
   _id,
@@ -14,6 +14,10 @@ const postsQuery = `*[_type == "post"]{
 
 export default function Home({ posts }) {
   const [current, setCurrent] = useState(0);
+
+  useEffect(() => {
+    console.log(posts[current]?.body);
+  });
 
   return (
     <div className="flex flex-col lg:flex-row text-gray-700 bg-white dark:bg-dark dark:text-gray-200 transition duration-700 divide-x-none lg:h-screen lg:overflow-hidden">
@@ -87,14 +91,9 @@ export default function Home({ posts }) {
             </a>
           </span>
         </div>
-        <Markdown
-          source={posts[current]?.body}
-          className="flex flex-col gap-5 text-lg leading-7 font-classic"
-        />
-        {/* <PortableText
-                    blocks={posts[current]?.text}
-                    className="flex flex-col gap-5 text-lg leading-7 font-classic"
-                /> */}
+        <Markdown className="flex flex-col gap-5 text-lg leading-7 font-classic">
+          {posts[current]?.body}
+        </Markdown>
       </div>
     </div>
   );
@@ -107,16 +106,6 @@ export const getStaticProps = async () => {
 
   return {
     props: { posts },
+    //revalidate: 60,
   };
 };
-
-// export async function getStaticProps() {
-//   const posts = await sanityClient.fetch(postsQuery);
-
-//   return {
-//     props: {
-//       posts,
-//     },
-//     revalidate: 60,
-//   };
-// }

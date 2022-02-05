@@ -83,7 +83,7 @@ export default function Home({ posts }) {
                     <span className="text-lg font-semibold">
                         Autor:
                         <a
-                            href="https://www.youtube.com/c/ChironLast"
+                            href={posts[current]?.author_link}
                             className="ml-2 text-blue-400 hover:underline"
                             target="_blank"
                         >
